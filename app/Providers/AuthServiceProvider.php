@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use App\Models\User;
-use Laravel\Passport\Passport;
+use App\Policies\UserPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use App\Policies\UserPolicy;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -39,12 +39,12 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Passport::tokensCan([
-            'admin' => 'Admin user scope',
-            'basic' => 'Basic user scope',
-            'users' => 'Users scope',
-            'users:list' => 'Users scope',
-            'users:read' => 'Users scope for reading records',
-            'users:write' => 'Users scope for writing records',
+            'admin'        => 'Admin user scope',
+            'basic'        => 'Basic user scope',
+            'users'        => 'Users scope',
+            'users:list'   => 'Users scope',
+            'users:read'   => 'Users scope for reading records',
+            'users:write'  => 'Users scope for writing records',
             'users:create' => 'Users scope for creating records',
             'users:delete' => 'Users scope for deleting records',
         ]);

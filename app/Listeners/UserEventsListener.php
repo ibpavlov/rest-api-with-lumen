@@ -2,15 +2,15 @@
 
 namespace App\Listeners;
 
-use Illuminate\Events\Dispatcher;
 use App\Events\UserEvents\UserCreatedEvent;
 use App\Mails\WelcomeEmail;
+use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Facades\Mail;
 
 class UserEventsListener
 {
     /**
-     * Handle the user created event
+     * Handle the user created event.
      *
      * @param UserCreatedEvent $event
      */

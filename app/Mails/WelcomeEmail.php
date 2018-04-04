@@ -12,7 +12,7 @@ class WelcomeEmail extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * Instance of User
+     * Instance of User.
      *
      * @var User
      */

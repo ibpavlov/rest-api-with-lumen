@@ -2,15 +2,14 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Contracts\UserRepository;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Eloquent\Model;
 use App\Events\UserEvents\UserCreatedEvent;
+use App\Models\User;
+use App\Repositories\Contracts\UserRepository;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class EloquentUserRepository extends AbstractEloquentRepository implements UserRepository
 {
-
     /*
      * @inheritdoc
      */
@@ -30,7 +29,7 @@ class EloquentUserRepository extends AbstractEloquentRepository implements UserR
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function update(Model $model, array $data)
     {
@@ -44,7 +43,7 @@ class EloquentUserRepository extends AbstractEloquentRepository implements UserR
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function findBy(array $searchCriteria = [])
     {
@@ -57,7 +56,7 @@ class EloquentUserRepository extends AbstractEloquentRepository implements UserR
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function findOne($id)
     {

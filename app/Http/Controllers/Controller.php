@@ -1,9 +1,11 @@
-<?php //app/Http/Controllers/Controller.php
+<?php
+
+//app/Http/Controllers/Controller.php
 
 namespace App\Http\Controllers;
 
-use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Laravel\Lumen\Routing\Controller as BaseController;
 use League\Fractal\Manager;
 
 class Controller extends BaseController
@@ -11,7 +13,7 @@ class Controller extends BaseController
     use ResponseTrait;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param Manager|null $fractal
      */
@@ -22,10 +24,11 @@ class Controller extends BaseController
     }
 
     /**
-     * Validate HTTP request against the rules
+     * Validate HTTP request against the rules.
      *
      * @param Request $request
-     * @param array $rules
+     * @param array   $rules
+     *
      * @return bool|array
      */
     protected function validateRequest(Request $request, array $rules)

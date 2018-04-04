@@ -2,36 +2,36 @@
 
 namespace App\Repositories;
 
+use App\Models\User;
 use App\Repositories\Contracts\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
-use App\Models\User;
 
 abstract class AbstractEloquentRepository implements BaseRepository
 {
     /**
-     * Name of the Model with absolute namespace
+     * Name of the Model with absolute namespace.
      *
      * @var string
      */
     protected $modelName;
 
     /**
-     * Instance that extends Illuminate\Database\Eloquent\Model
+     * Instance that extends Illuminate\Database\Eloquent\Model.
      *
      * @var Model
      */
     protected $model;
 
     /**
-     * get logged in user
+     * get logged in user.
      *
-     * @var User $loggedInUser
+     * @var User
      */
     protected $loggedInUser;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct(Model $model)
     {
@@ -40,7 +40,7 @@ abstract class AbstractEloquentRepository implements BaseRepository
     }
 
     /**
-     * Get Model instance
+     * Get Model instance.
      *
      * @return Model
      */
@@ -50,7 +50,7 @@ abstract class AbstractEloquentRepository implements BaseRepository
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function findOne($id)
     {
@@ -58,7 +58,7 @@ abstract class AbstractEloquentRepository implements BaseRepository
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function findOneBy(array $criteria)
     {
@@ -66,14 +66,13 @@ abstract class AbstractEloquentRepository implements BaseRepository
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function findBy(array $searchCriteria = [])
     {
-        $limit = !empty($searchCriteria['per_page']) ? (int)$searchCriteria['per_page'] : 15; // it's needed for pagination
+        $limit = !empty($searchCriteria['per_page']) ? (int) $searchCriteria['per_page'] : 15; // it's needed for pagination
 
         $queryBuilder = $this->model->where(function ($query) use ($searchCriteria) {
-
             $this->applySearchCriteriaInQueryBuilder($query, $searchCriteria);
         }
         );
@@ -81,17 +80,16 @@ abstract class AbstractEloquentRepository implements BaseRepository
         return $queryBuilder->paginate($limit);
     }
 
-
     /**
-     * Apply condition on query builder based on search criteria
+     * Apply condition on query builder based on search criteria.
      *
-     * @param Object $queryBuilder
-     * @param array $searchCriteria
+     * @param object $queryBuilder
+     * @param array  $searchCriteria
+     *
      * @return mixed
      */
     protected function applySearchCriteriaInQueryBuilder($queryBuilder, array $searchCriteria = [])
     {
-
         foreach ($searchCriteria as $key => $value) {
 
             //skip pagination related query params
@@ -114,7 +112,7 @@ abstract class AbstractEloquentRepository implements BaseRepository
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function save(array $data)
     {
@@ -125,7 +123,7 @@ abstract class AbstractEloquentRepository implements BaseRepository
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function update(Model $model, array $data)
     {
@@ -149,7 +147,7 @@ abstract class AbstractEloquentRepository implements BaseRepository
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function findIn($key, array $values)
     {
@@ -157,7 +155,7 @@ abstract class AbstractEloquentRepository implements BaseRepository
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function delete(Model $model)
     {
@@ -165,7 +163,7 @@ abstract class AbstractEloquentRepository implements BaseRepository
     }
 
     /**
-     * get loggedIn user
+     * get loggedIn user.
      *
      * @return User
      */

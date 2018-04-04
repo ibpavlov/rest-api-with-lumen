@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Passport\Token;
 
-
 class ThrottleRequestsTest extends \TestCase
 {
     use DatabaseMigrations;
@@ -18,7 +17,7 @@ class ThrottleRequestsTest extends \TestCase
         $user = factory(User::class)->create();
         $this->actingAs($user);
 
-        $request = Request::create($this->prepareUrlForRequest('/users/' . $user->uid));
+        $request = Request::create($this->prepareUrlForRequest('/users/'.$user->uid));
         $middleware = app(ThrottleRequests::class);
 
         $totalNumberOfRequest = 60;
@@ -53,8 +52,8 @@ class ThrottleRequestsTest extends \TestCase
         $user->withAccessToken(new Token(['scopes' => ['*']]));
         $this->actingAs($user);
 
-        for ($i = 1; $i <= 65 ; $i++) {
-            $this->call('GET', '/users/' . $user->uid);
+        for ($i = 1; $i <= 65; $i++) {
+            $this->call('GET', '/users/'.$user->uid);
 
             // for greater than 60 (default limit), it will throttle
             if ($i > 60) {
@@ -63,7 +62,6 @@ class ThrottleRequestsTest extends \TestCase
                 $this->assertResponseStatus(200);
                 $this->seeJson(['email' => $user->email]);
             }
-
         }
     }
 }

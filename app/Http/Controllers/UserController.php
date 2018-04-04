@@ -4,29 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Repositories\Contracts\UserRepository;
-use Illuminate\Http\Request;
 use App\Transformers\UserTransformer;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     /**
-     * Instance of UserRepository
+     * Instance of UserRepository.
      *
      * @var UserRepository
      */
     private $userRepository;
 
     /**
-     * Instanceof UserTransformer
+     * Instanceof UserTransformer.
      *
      * @var UserTransformer
      */
     private $userTransformer;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param UserRepository $userRepository
+     * @param UserRepository  $userRepository
      * @param UserTransformer $userTransformer
      */
     public function __construct(UserRepository $userRepository, UserTransformer $userTransformer)
@@ -41,6 +41,7 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
@@ -54,6 +55,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param $id
+     *
      * @return \Illuminate\Http\JsonResponse|string
      */
     public function show($id)
@@ -74,6 +76,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse|string
      */
     public function store(Request $request)
@@ -100,6 +103,7 @@ class UserController extends Controller
      *
      * @param Request $request
      * @param $id
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
@@ -121,7 +125,6 @@ class UserController extends Controller
         // Authorization
         $this->authorize('update', $user);
 
-
         $user = $this->userRepository->update($user, $request->all());
 
         return $this->respondWithItem($user, $this->userTransformer);
@@ -131,6 +134,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param $id
+     *
      * @return \Illuminate\Http\JsonResponse|string
      */
     public function destroy($id)
@@ -150,9 +154,10 @@ class UserController extends Controller
     }
 
     /**
-     * Store Request Validation Rules
+     * Store Request Validation Rules.
      *
      * @param Request $request
+     *
      * @return array
      */
     private function storeRequestValidationRules(Request $request)
@@ -170,7 +175,7 @@ class UserController extends Controller
             'city'                  => 'max:100',
             'state'                 => 'max:100',
             'country'               => 'max:100',
-            'password'              => 'min:5'
+            'password'              => 'min:5',
         ];
 
         $requestUser = $request->user();
@@ -186,16 +191,17 @@ class UserController extends Controller
     }
 
     /**
-     * Update Request validation Rules
+     * Update Request validation Rules.
      *
      * @param Request $request
+     *
      * @return array
      */
     private function updateRequestValidationRules(Request $request)
     {
         $userId = $request->segment(2);
         $rules = [
-            'email'                 => 'email|unique:users,email,'. $userId,
+            'email'                 => 'email|unique:users,email,'.$userId,
             'firstName'             => 'max:100',
             'middleName'            => 'max:50',
             'lastName'              => 'max:100',
@@ -207,7 +213,7 @@ class UserController extends Controller
             'city'                  => 'max:100',
             'state'                 => 'max:100',
             'country'               => 'max:100',
-            'password'              => 'min:5'
+            'password'              => 'min:5',
         ];
 
         $requestUser = $request->user();
