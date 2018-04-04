@@ -1,10 +1,10 @@
 <?php
 
 namespace Tests\Endpoints;
+
 use App\Models\User;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Passport\Token;
-
 
 class UsersTest extends \TestCase
 {
@@ -70,7 +70,7 @@ class UsersTest extends \TestCase
         $this->call('POST', '/users', [
             'email'     => 'test@test.com',
             'firstName' => 'first',
-            'lastName'  => 'last'
+            'lastName'  => 'last',
         ]);
         $this->assertResponseStatus(201);
 
@@ -78,7 +78,7 @@ class UsersTest extends \TestCase
         $this->call('POST', '/users', [
             'email'     => 'test@test.com',
             'firstName' => 'first2',
-            'lastName'  => 'last2'
+            'lastName'  => 'last2',
         ]);
         $this->assertResponseStatus(400);
     }
@@ -96,12 +96,12 @@ class UsersTest extends \TestCase
         $this->actingAs($user);
 
         $this->call('PUT', '/users/'.$user->uid, [
-            'firstName' => 'updated_first'
+            'firstName' => 'updated_first',
         ]);
         $this->assertResponseOk();
 
         $this->call('PUT', '/users/234324', [
-            'firstName' => 'updated_first'
+            'firstName' => 'updated_first',
         ]);
         $this->assertResponseStatus(404);
     }

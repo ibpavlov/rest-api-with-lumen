@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use App\Models\User;
-use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\UserRepository;
 use App\Repositories\EloquentUserRepository;
+use Illuminate\Support\ServiceProvider;
 
 class RepositoriesServiceProvider extends ServiceProvider
 {
@@ -36,7 +36,7 @@ class RepositoriesServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            UserRepository::class
+            UserRepository::class,
         ];
     }
 }

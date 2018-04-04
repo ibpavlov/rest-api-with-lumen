@@ -8,7 +8,7 @@ use App\Models\User;
 class UserCreatedEvent extends Event
 {
     /**
-     * Instance of User
+     * Instance of User.
      *
      * @var User
      */

@@ -1,14 +1,16 @@
-<?php //config/auth.php
+<?php
+
+//config/auth.php
 
 return [
     'defaults' => [
-        'guard' => 'api',
+        'guard'     => 'api',
         'passwords' => 'users',
     ],
 
     'guards' => [
         'api' => [
-            'driver' => 'passport',
+            'driver'   => 'passport',
             'provider' => 'users',
         ],
     ],
@@ -16,7 +18,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => \App\Models\User::class
-        ]
-    ]
+            'model'  => \App\Models\User::class,
+        ],
+    ],
 ];

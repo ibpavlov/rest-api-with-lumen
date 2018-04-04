@@ -4,9 +4,9 @@ namespace Tests\Repositories;
 
 use App\Models\User;
 use App\Repositories\EloquentUserRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Lumen\Testing\DatabaseMigrations;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class EloquentUserRepositoryTest extends \TestCase
 {
@@ -16,7 +16,7 @@ class EloquentUserRepositoryTest extends \TestCase
      * @var EloquentUserRepository
      */
     protected $eloquentUserRepository;
-    
+
     public function setup()
     {
         parent::setUp();
@@ -57,7 +57,7 @@ class EloquentUserRepositoryTest extends \TestCase
         //check if it returns valid user, for multiple criteria
         $user = $this->eloquentUserRepository->findOneBy([
             'email'     => $testUser->email,
-            'firstName' => $testUser->firstName
+            'firstName' => $testUser->firstName,
         ]);
         $this->assertInstanceOf(User::class, $user);
         $this->assertEquals($testUser->firstName, $user->firstName);
@@ -107,7 +107,7 @@ class EloquentUserRepositoryTest extends \TestCase
     {
         $testUser = factory(User::class)->create([
             'firstName' => 'test_first',
-            'lastName'  => 'test_last'
+            'lastName'  => 'test_last',
         ]);
 
         // First, test user instance
@@ -117,7 +117,7 @@ class EloquentUserRepositoryTest extends \TestCase
         // Update user
         $this->eloquentUserRepository->update($testUser, [
             'firstName' => 'updated first_name',
-            'lastName'  => 'updated last_name'
+            'lastName'  => 'updated last_name',
         ]);
 
         // Fetch the user again

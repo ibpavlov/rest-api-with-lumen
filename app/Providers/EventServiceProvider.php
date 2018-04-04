@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
 use App\Listeners\UserEventsListener;
+use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
 {

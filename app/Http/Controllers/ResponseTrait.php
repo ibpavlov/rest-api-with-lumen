@@ -1,4 +1,6 @@
-<?php //app/Http/Controllers/ResponseTrait.php
+<?php
+
+//app/Http/Controllers/ResponseTrait.php
 
 namespace App\Http\Controllers;
 
@@ -13,23 +15,24 @@ use League\Fractal\TransformerAbstract;
 trait ResponseTrait
 {
     /**
-     * Status code of response
+     * Status code of response.
      *
      * @var int
      */
     protected $statusCode = 200;
 
     /**
-     * Fractal manager instance
+     * Fractal manager instance.
      *
      * @var Manager
      */
     protected $fractal;
 
     /**
-     * Set fractal Manager instance
+     * Set fractal Manager instance.
      *
      * @param Manager $fractal
+     *
      * @return void
      */
     public function setFractal(Manager $fractal)
@@ -38,7 +41,7 @@ trait ResponseTrait
     }
 
     /**
-     * Getter for statusCode
+     * Getter for statusCode.
      *
      * @return mixed
      */
@@ -48,7 +51,7 @@ trait ResponseTrait
     }
 
     /**
-     * Setter for statusCode
+     * Setter for statusCode.
      *
      * @param int $statusCode Value to set
      *
@@ -62,10 +65,11 @@ trait ResponseTrait
     }
 
     /**
-     * Send custom data response
+     * Send custom data response.
      *
      * @param $status
      * @param $message
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function sendCustomResponse($status, $message)
@@ -74,9 +78,10 @@ trait ResponseTrait
     }
 
     /**
-     * Send this response when api user provide fields that doesn't exist in our application
+     * Send this response when api user provide fields that doesn't exist in our application.
      *
      * @param $errors
+     *
      * @return mixed
      */
     public function sendUnknownFieldResponse($errors)
@@ -85,9 +90,10 @@ trait ResponseTrait
     }
 
     /**
-     * Send this response when api user provide filter that doesn't exist in our application
+     * Send this response when api user provide filter that doesn't exist in our application.
      *
      * @param $errors
+     *
      * @return mixed
      */
     public function sendInvalidFilterResponse($errors)
@@ -96,9 +102,10 @@ trait ResponseTrait
     }
 
     /**
-     * Send this response when api user provide incorrect data type for the field
+     * Send this response when api user provide incorrect data type for the field.
      *
      * @param $errors
+     *
      * @return mixed
      */
     public function sendInvalidFieldResponse($errors)
@@ -107,7 +114,7 @@ trait ResponseTrait
     }
 
     /**
-     * Send this response when a api user try access a resource that they don't belong
+     * Send this response when a api user try access a resource that they don't belong.
      *
      * @return string
      */
@@ -117,9 +124,10 @@ trait ResponseTrait
     }
 
     /**
-     * Send 404 not found response
+     * Send 404 not found response.
      *
      * @param string $message
+     *
      * @return string
      */
     public function sendNotFoundResponse($message = '')
@@ -132,7 +140,7 @@ trait ResponseTrait
     }
 
     /**
-     * Send empty data response
+     * Send empty data response.
      *
      * @return string
      */
@@ -142,10 +150,11 @@ trait ResponseTrait
     }
 
     /**
-     * Return collection response from the application
+     * Return collection response from the application.
      *
      * @param array|LengthAwarePaginator|\Illuminate\Database\Eloquent\Collection $collection
-     * @param \Closure|TransformerAbstract $callback
+     * @param \Closure|TransformerAbstract                                        $callback
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     protected function respondWithCollection($collection, $callback)
@@ -165,10 +174,11 @@ trait ResponseTrait
     }
 
     /**
-     * Return single item response from the application
+     * Return single item response from the application.
      *
-     * @param Model $item
+     * @param Model                        $item
      * @param \Closure|TransformerAbstract $callback
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     protected function respondWithItem($item, $callback)
@@ -180,10 +190,11 @@ trait ResponseTrait
     }
 
     /**
-     * Return a json response from the application
+     * Return a json response from the application.
      *
      * @param array $array
      * @param array $headers
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     protected function respondWithArray(array $array, array $headers = [])

@@ -26,7 +26,7 @@ class UserTransformer extends TransformerAbstract
             'role'                  => $user->role,
             'profileImage'          => $user->profileImage,
             'createdAt'             => (string) $user->created_at,
-            'updatedAt'             => (string) $user->updated_at
+            'updatedAt'             => (string) $user->updated_at,
         ];
 
         return $formattedUser;

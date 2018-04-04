@@ -26,23 +26,22 @@ $app->post('accessToken', 'AccessTokenController@createAccessToken');
 $app->group(['middleware' => ['auth:api', 'throttle:60']], function () use ($app) {
     $app->post('users', [
         'uses'       => 'UserController@store',
-        'middleware' => "scope:users,users:create"
+        'middleware' => 'scope:users,users:create',
     ]);
-    $app->get('users',  [
+    $app->get('users', [
         'uses'       => 'UserController@index',
-        'middleware' => "scope:users,users:list"
+        'middleware' => 'scope:users,users:list',
     ]);
     $app->get('users/{id}', [
         'uses'       => 'UserController@show',
-        'middleware' => "scope:users,users:read"
+        'middleware' => 'scope:users,users:read',
     ]);
     $app->put('users/{id}', [
         'uses'       => 'UserController@update',
-        'middleware' => "scope:users,users:write"
+        'middleware' => 'scope:users,users:write',
     ]);
     $app->delete('users/{id}', [
         'uses'       => 'UserController@destroy',
-        'middleware' => "scope:users,users:delete"
+        'middleware' => 'scope:users,users:delete',
     ]);
 });
-

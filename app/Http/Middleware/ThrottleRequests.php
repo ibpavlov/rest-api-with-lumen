@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Response;
 use Illuminate\Cache\RateLimiter;
+use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ThrottleRequests
@@ -19,7 +19,7 @@ class ThrottleRequests
     /**
      * Create a new request throttler.
      *
-     * @param  \Illuminate\Cache\RateLimiter $limiter
+     * @param \Illuminate\Cache\RateLimiter $limiter
      *
      * @return void
      */
@@ -31,10 +31,10 @@ class ThrottleRequests
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure                 $next
-     * @param  int                      $maxAttempts
-     * @param  int                      $decayMinutes
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     * @param int                      $maxAttempts
+     * @param int                      $decayMinutes
      *
      * @return mixed
      */
@@ -60,24 +60,24 @@ class ThrottleRequests
     /**
      * Resolve request signature.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return string
      */
     protected function resolveRequestSignature($request)
     {
         return sha1(
-            $request->method() .
-            '|' . $request->getHost() .
-            '|' . $request->ip()
+            $request->method().
+            '|'.$request->getHost().
+            '|'.$request->ip()
         );
     }
 
     /**
      * Create a 'too many attempts' response.
      *
-     * @param  string $key
-     * @param  int    $maxAttempts
+     * @param string $key
+     * @param int    $maxAttempts
      *
      * @return \Illuminate\Http\Response
      */
@@ -96,10 +96,10 @@ class ThrottleRequests
     /**
      * Add the limit header information to the given response.
      *
-     * @param  \Illuminate\Http\Response $response
-     * @param  int                       $maxAttempts
-     * @param  int                       $remainingAttempts
-     * @param  int|null                  $retryAfter
+     * @param \Illuminate\Http\Response $response
+     * @param int                       $maxAttempts
+     * @param int                       $remainingAttempts
+     * @param int|null                  $retryAfter
      *
      * @return \Illuminate\Http\Response
      */
@@ -122,8 +122,8 @@ class ThrottleRequests
     /**
      * Calculate the number of remaining attempts.
      *
-     * @param  string $key
-     * @param  int    $maxAttempts
+     * @param string $key
+     * @param int    $maxAttempts
      *
      * @return int
      */

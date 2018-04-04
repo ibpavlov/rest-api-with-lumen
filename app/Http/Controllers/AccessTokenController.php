@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Repositories\Contracts\UserRepository;
+use Illuminate\Http\Request;
 
 class AccessTokenController extends Controller
 {
     /**
-     * Instance of UserRepository
+     * Instance of UserRepository.
      *
      * @var UserRepository
      */
     private $userRepository;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param UserRepository $userRepository
      */
@@ -30,9 +29,10 @@ class AccessTokenController extends Controller
     /**
      * Since, with Laravel|Lumen passport doesn't restrict
      * a client requesting any scope. we have to restrict it.
-     * http://stackoverflow.com/questions/39436509/laravel-passport-scopes
+     * http://stackoverflow.com/questions/39436509/laravel-passport-scopes.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function createAccessToken(Request $request)
@@ -46,7 +46,7 @@ class AccessTokenController extends Controller
 
         //Set default scope with full access
         if (!isset($inputs['scope']) || empty($inputs['scope'])) {
-            $inputs['scope'] = "*";
+            $inputs['scope'] = '*';
         }
 
         $tokenRequest = $request->create('/oauth/token', 'post', $inputs);
